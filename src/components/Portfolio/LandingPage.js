@@ -13,7 +13,7 @@ function LandingPage() {
   });
 
   useEffect(() => {
-    HeaderService.fetchAllPortfolio()
+    HeaderService.fetchHomePageData()
       .then((response) => {
         setPortfolios({
           data: response.data,
@@ -105,12 +105,13 @@ function LandingPage() {
                           <td>{item.fundManagerName}</td>
                           <td>{item.benchmark}</td>
                           <td>
-                            <Link to="/theme">{item.theme.themeName}</Link>
+                            <Link to="/theme">{item.themeName}</Link>
                           </td>
                           <td>{item.initialInvestment}</td>
                           <td>{item.currentValue}</td>
-                          <td>{item.currentValue}</td>
+                          <td>{item.noOfSecurities}</td>
                           <td className="del">
+                           
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="25"

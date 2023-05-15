@@ -16,6 +16,10 @@ class HeaderService{
         return axios.get(`${HEADER_BASE_URL}/fetchAllportfolio`)
     }
 
+    //to display the  required details in landing page
+    fetchHomePageData(){
+        return axios.get(`${HEADER_BASE_URL}/fetchHomeData`)
+    }
     //to fetch the usm
     fetchData(){
         return axios.get(FETCH_DATA_URL)

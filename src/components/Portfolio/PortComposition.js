@@ -84,11 +84,47 @@ const PortComposition = () => {
       </div>
       <div className="c1">
         <h1>Portfolio Composition</h1>
+       <div className="box">
 
+       </div>
         
         <div>
           {transferObject.portfolioName}
-          {transferObject.theme.themeName}
+        
+          {transferObject.themeName}
+        </div>
+        <div>
+          <table className="table table-bordered">
+            <thead>
+            <tr style={{backgroundColor:"black",color:"white"}}>
+              <th>Security Name</th>
+              <th>Asset Class</th>
+              <th>Sub Asset Class</th>
+              <th>Equity Category</th>
+              <th>Security Price</th>
+              <th>Quantity</th>
+              <th>value</th>
+              <th>Transaction Date</th>
+            </tr>
+            </thead>
+            <tbody>
+              {
+                compositionData.loading?"":compositionData.data.map((item,index)=>{
+                  return (<tr key={item.portfolioCompostionId}>
+                      <td>{item.securityName}</td>
+                      <td>{item.assetClass}</td>
+                      <td>{item.subAssetClass}</td>
+                      <td>{item.equityCategory}</td>
+                      <td>{item.price}</td>
+                      <td>{item.quantity}</td>
+                      <td>{item.value}</td>
+                      <td>{item.transactionDate}</td>
+                  </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
         </div>
         <div className="c2">
           <button className="l1">Add securities</button>

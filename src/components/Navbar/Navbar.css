@@ -1,3 +1,13 @@
-.color{
-    background-color: rgb(158, 217, 237);
+.color {
+  background-color: rgb(158, 217, 237);
+}
+
+.home {
+  border: none;
+
+  background-color: rgb(158, 217, 237);
+}
+
+.nav-link {
+  margin-left: 4%;
 }

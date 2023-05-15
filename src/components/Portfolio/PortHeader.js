@@ -222,14 +222,12 @@ const PortHeader = (props) => {
                       value={props.selected}
                     >
                       <option value="Conservative">Conservative</option>
-                      <option value="ModeratelyConservative">
-                        ModeratelyConservative
-                      </option>
+                      
                       <option value="Aggressive">Aggressive</option>
-                      <option value="ModeratelyAggressive">
-                        ModeratelyAggressive
+                      <option value="Moderately Aggressive">
+                        Moderately Aggressive
                       </option>
-                      <option value="VeryAggressive">VeryAggressive</option>
+                      <option value="Very Aggressive">VeryAggressive</option>
                     </select>
                   </div>
                 </p>
@@ -242,7 +240,7 @@ const PortHeader = (props) => {
                   savePortfolioHeader();
                 }}
               >
-                SUBMIT
+                Save
               </button>
               &nbsp;&nbsp;
               <button className="btn btn-info reset" type="reset">

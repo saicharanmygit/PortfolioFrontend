@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="color">
       <nav class="navbar navbar-expand-sm ">
         {/* <a class="navbar-brand" href="/LandingPage"> */}
-        <button >
+        <button className="home">
           <svg
           onClick={() => navigate("/")}
             xmlns="http://www.w3.org/2000/svg"

@@ -1,32 +1,31 @@
 import React from "react";
 import "./LandingPage.css";
 import Navbar from "../Navbar/Navbar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HeaderService from "../../services/HeaderService";
 
 function LandingPage() {
   const navigate = useNavigate();
   const [portfolios, setPortfolios] = useState({
-    data:[],
-    loading:true
+    data: [],
+    loading: true,
   });
 
   useEffect(() => {
     HeaderService.fetchAllPortfolio()
       .then((response) => {
         setPortfolios({
-          data:response.data,
-          loading:false
-        }
-        );
+          data: response.data,
+          loading: false,
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
   console.log(portfolios);
- console.log(typeof portfolios);
+
   return (
     <div>
       <div>
@@ -46,7 +45,7 @@ function LandingPage() {
               <button class="btn btn-primary anybutton">Search</button>
             </div> */}
           </div>
-          
+
           <div className="add">
             <button>
               <svg
@@ -81,59 +80,62 @@ function LandingPage() {
                 <tr>
                   <th>S.No</th>
                   <th>Portofile Name</th>
-                   <th>Fund Manger Name</th>
+                  <th>Fund Manger Name</th>
                   <th>Bench Mark</th>
                   <th>Theme</th>
                   <th>Investment value</th>
                   <th>Current Value</th>
-                  <th>returns</th>
+                  {/* <th>returns</th> */}
                   <th>No of holdings</th>
                   <th>action</th>
                 </tr>
               </thead>
               <tbody>
-                
-                <tr>
-                  <td>1</td>
-
-                  <td>john</td>
-
-                  <td>displayed</td>
-                  <td>displayed</td>
-
-                  <td>enterable</td>
-
-                  <td>displayed</td>
-
-                  <td>displayed</td>
-
-                  <td>displayed</td>
-                  <td>value</td>
-
-                  <td className="del">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="35"
-                      fill="currentColor"
-                      class="bi bi-pen"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="35"
-                      fill="currentColor"
-                      class="bi bi-trash-fill"
-                      viewBox="0 0 16 16"
-                      margin-right="50px"
-                    >
-                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                    </svg>
-                  </td>
-                </tr>
+                {portfolios.loading
+                  ? ""
+                  : portfolios.data.map((item, index) => {
+                      return (
+                        <tr key={item.portfolioName}>
+                          <td>{index + 1}</td>
+                          <td>
+                            <Link to="/portcomposition" state={{transferObject:item}}>
+                              {item.portfolioName}
+                            </Link>
+                          </td>
+                          <td>{item.fundManagerName}</td>
+                          <td>{item.benchmark}</td>
+                          <td>
+                            <Link to="/theme">{item.theme.themeName}</Link>
+                          </td>
+                          <td>{item.initialInvestment}</td>
+                          <td>{item.currentValue}</td>
+                          <td>{item.currentValue}</td>
+                          <td className="del">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="35"
+                              fill="currentColor"
+                              class="bi bi-pen"
+                              viewBox="0 0 16 16"
+                            >
+                              <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="35"
+                              fill="currentColor"
+                              class="bi bi-trash-fill"
+                              viewBox="0 0 16 16"
+                              margin-right="50px"
+                            >
+                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                            </svg>
+                          </td>
+                        </tr>
+                      );
+                    })}
               </tbody>
             </table>
           </div>

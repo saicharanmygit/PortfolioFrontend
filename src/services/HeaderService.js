@@ -3,6 +3,7 @@ import axios from "axios";
  const FETCH_DATA_URL="http://localhost:2021/api/master/fetchData";
  
  const HEADER_BASE_URL="http://localhost:2021/header";
+ const COMPOSITION_BASE_URL="http://localhost:2021/Composition";
 
 class HeaderService{
     //to create the portfolio
@@ -25,6 +26,10 @@ class HeaderService{
 
         return axios.get(FETCH_BY_ISNUMBER)
 
+    }
+
+    createComposition(portfolioComposition){
+        return axios.post(`${COMPOSITION_BASE_URL}/addComposition`,portfolioComposition)
     }
 
     

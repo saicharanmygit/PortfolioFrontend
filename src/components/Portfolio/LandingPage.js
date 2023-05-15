@@ -1,29 +1,32 @@
-import React  from "react";
-
+import React from "react";
 import "./LandingPage.css";
 import Navbar from "../Navbar/Navbar";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import HeaderService from "../../services/HeaderService";
 
 function LandingPage() {
   const navigate = useNavigate();
-  const [portfolios,setPortfolios]=useState([{}])
-  
-  useEffect(()=>{
-    HeaderService.fetchAllPortfolio().then((response)=>{
-      setPortfolios(response.data);
-      
-    }).catch((error)=>{console.log(error)})
-  }
-  ,[] )
+  const [portfolios, setPortfolios] = useState({
+    data:[],
+    loading:true
+  });
+
+  useEffect(() => {
+    HeaderService.fetchAllPortfolio()
+      .then((response) => {
+        setPortfolios({
+          data:response.data,
+          loading:false
+        }
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   console.log(portfolios);
-
-
-
-
-
-
+ console.log(typeof portfolios);
   return (
     <div>
       <div>
@@ -43,7 +46,7 @@ function LandingPage() {
               <button class="btn btn-primary anybutton">Search</button>
             </div> */}
           </div>
-          {/* <br></br> */}
+          
           <div className="add">
             <button>
               <svg
@@ -76,18 +79,20 @@ function LandingPage() {
             <table className="my-table">
               <thead>
                 <tr>
-                  <th>S.No</th> <th>Portofile Name</th>{" "}
-                  <th>Fund Manger Name</th>
+                  <th>S.No</th>
+                  <th>Portofile Name</th>
+                   <th>Fund Manger Name</th>
                   <th>Bench Mark</th>
                   <th>Theme</th>
                   <th>Investment value</th>
-                  <th>Current Value</th> 
+                  <th>Current Value</th>
                   <th>returns</th>
                   <th>No of holdings</th>
                   <th>action</th>
                 </tr>
               </thead>
               <tbody>
+                
                 <tr>
                   <td>1</td>
 
@@ -128,7 +133,6 @@ function LandingPage() {
                       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                     </svg>
                   </td>
-                  
                 </tr>
               </tbody>
             </table>

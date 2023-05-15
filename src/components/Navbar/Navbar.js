@@ -11,7 +11,7 @@ const Navbar = () => {
         {/* <a class="navbar-brand" href="/LandingPage"> */}
         <button >
           <svg
-          onClick={() => navigate("/LandingPage")}
+          onClick={() => navigate("/")}
             xmlns="http://www.w3.org/2000/svg"
             width="100"
             height="45"

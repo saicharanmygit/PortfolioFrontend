@@ -29,6 +29,17 @@ const PortComposition = () => {
       });
   }, []);
 
+  useEffect(()=>{
+
+    console.log(transferObject.portfolioName);
+    HeaderService.fetchAllSecuritiesByPortfolioName(transferObject.portfolioName).then((response)=>{
+      setCompositionData({
+        data:response.data,
+        loading:false
+      })
+    })
+  },[])
+
   const handleChange = (e) => {
     setIsinNumber(e.target.value);
     HeaderService.fetchByIsNumber(e.target.value)
@@ -64,10 +75,7 @@ const PortComposition = () => {
     };
     HeaderService.createComposition(compositionObject)
       .then((response) => {
-        setCompositionData({
-          data: response.data,
-          loading: false,
-        });
+        console.log(response.data);
         setMessage("security added succesfully");
       })
       .catch((error) => {
@@ -108,7 +116,7 @@ const PortComposition = () => {
             </tr>
             </thead>
             <tbody>
-              {
+              {/* {
                 compositionData.loading?"":compositionData.data.map((item,index)=>{
                   return (<tr key={item.portfolioCompostionId}>
                       <td>{item.securityName}</td>
@@ -122,7 +130,7 @@ const PortComposition = () => {
                   </tr>
                   )
                 })
-              }
+              } */}
             </tbody>
           </table>
         </div>

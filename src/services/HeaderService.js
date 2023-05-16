@@ -36,6 +36,11 @@ class HeaderService{
         return axios.post(`${COMPOSITION_BASE_URL}/addComposition`,portfolioComposition)
     }
 
+
+    //to display the all securites corresponding portfolioName
+    fetchAllSecuritiesByPortfolioName(portfolioName){
+        return axios.get(`${HEADER_BASE_URL}/fetchByName/`+portfolioName)
+    }
     
 
 }

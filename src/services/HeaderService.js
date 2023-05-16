@@ -4,7 +4,8 @@ import axios from "axios";
  
  const HEADER_BASE_URL="http://localhost:2021/header";
  const COMPOSITION_BASE_URL="http://localhost:2021/Composition";
-
+ const THEME_URL="http://localhost:2021/Themes";
+ 
 class HeaderService{
     //to create the portfolio
     createPortfolio(portfolio){
@@ -40,6 +41,12 @@ class HeaderService{
     //to display the all securites corresponding portfolioName
     fetchAllSecuritiesByPortfolioName(portfolioName){
         return axios.get(`${HEADER_BASE_URL}/fetchByName/`+portfolioName)
+    }
+
+
+    //to display based on theme
+    fetchByTheme(themeName){
+        return axios.get(`${THEME_URL}/fetchByName/`+themeName)
     }
     
 

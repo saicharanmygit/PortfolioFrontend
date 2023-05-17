@@ -18,6 +18,9 @@
 
   font-weight: bold;
 }
+.my-table{
+  margin-top: -15%;
+}
 
 .tabs {
   margin-left: 10%;
@@ -62,8 +65,9 @@
 
 .add {
   padding: 15%;
-  margin-left: 90%;
+  /* margin-right: -66%; */
   margin-top: -15%;
+  margin-left: 83%;
 }
 
 .del {

@@ -19,7 +19,7 @@ function App() {
         <Route path="/portheader" element={<PortHeader />}></Route>
         <Route path="/portcomposition" element={<PortComposition />}></Route>
         <Route path="/theme" element={<Theme/>}></Route>
-        {/* <Route path="/themeallocation" element={<AssetAllocation/>}></Route> */}
+        <Route path="/themeallocation" element={<AssetAllocation/>}></Route>
         
       </Routes>
       <Outlet/>

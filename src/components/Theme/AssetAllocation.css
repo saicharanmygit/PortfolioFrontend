@@ -18,7 +18,7 @@ form {
 .form-row {
     display: flex;
     flex-direction: column;
-    padding: auto;
+    padding: 10px;
 }
 label {
     font-weight: lighter;
@@ -40,6 +40,12 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+.formbutton {
+    text-align: center;
+    margin-right: -1%;
+    font-size: 20px ;
+    margin-top: 3%;
+}
     
 button:hover {
     background-color: #45a049;
@@ -47,11 +53,17 @@ button:hover {
 .f{
     border: 1px solid black;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 20px;
     padding: 10px;
     box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
     border-radius: 2px;
+
     }
 .f:hover{
     box-shadow: blue;
+}
+.f {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
 }

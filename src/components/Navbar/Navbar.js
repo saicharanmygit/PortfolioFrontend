@@ -4,14 +4,14 @@ import LandingPage from "../Portfolio/LandingPage";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <nav className="color">
       <nav class="navbar navbar-expand-sm ">
         {/* <a class="navbar-brand" href="/LandingPage"> */}
         <button className="home">
           <svg
-          onClick={() => navigate("/")}
+            onClick={() => navigate("/")}
             xmlns="http://www.w3.org/2000/svg"
             width="100"
             height="50"
@@ -25,11 +25,11 @@ const Navbar = () => {
         <a class="nav-link" href="#">
           <h1>Portfolio Manager</h1>
         </a>
-          <h3 className="alloc">
-        <a className="nav-link" href="/themeallocation">
+        <h4 className="alloc">
+          <a className="nav-link" href="/themeallocation">
             Themes
-        </a>
-            </h3>
+          </a>
+        </h4>
       </nav>
     </nav>
   );

@@ -28,9 +28,9 @@ function LandingPage() {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Navbar />
-      </div>
+      </div> */}
       <div className="tabs">
         <h1 className="tag">MY PORTFOLIOS</h1>
         <div class="row height d-flex justify-content-center align-items-center">

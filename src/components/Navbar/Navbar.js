@@ -14,7 +14,7 @@ const Navbar = () => {
           onClick={() => navigate("/")}
             xmlns="http://www.w3.org/2000/svg"
             width="100"
-            height="45"
+            height="50"
             fill="currentColor"
             class="bi bi-house-door justify-left"
             viewBox="0 0 16 16"
@@ -23,8 +23,13 @@ const Navbar = () => {
           </svg>
         </button>
         <a class="nav-link" href="#">
-          <h2>Portfolio Manager</h2>
+          <h1>Portfolio Manager</h1>
         </a>
+          <h3 className="alloc">
+        <a className="nav-link" href="/themeallocation">
+            Themes
+        </a>
+            </h3>
       </nav>
     </nav>
   );

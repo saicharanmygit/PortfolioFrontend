@@ -88,9 +88,9 @@ const PortComposition = () => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Navbar />
-      </div>
+      </div> */}
       <div className="c1">
         <h1>Portfolio Composition</h1>
         <div className="box"></div>

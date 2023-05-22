@@ -4,41 +4,58 @@ import Navbar from "../Navbar/Navbar";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import HeaderService from "../../services/HeaderService";
+import Validation from "./Validation";
 
 const PortHeader = (props) => {
-  const [portfolioName, setPortfolioName] = useState("");
-  const [fundManagerName, setFundManagerName] = useState("");
-  const [baseCurrency, setBaseCurrency] = useState("");
-  const [initialInvestment, setInitialInvestment] = useState("");
-  const [currInvestment, setCurrInvestment] = useState("");
-  const [exchange, setExchange] = useState("");
-  const [rebalancingFrequency, setRebalancingFrequency] = useState("");
-  const [benchmark, setBenchmark] = useState("");
-  const [status, setStatus] = useState("");
-  const [themes, setThemes] = useState("");
+
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  //validation
+  const [values, setValues] = useState({
+    portfolioName: "",
+    fundManagerName: "",
+    baseCurrency: "INR",
+    initialInvestment: "500 crore",
+    exchange: "NSE",
+    rebalancingFrequency: "",
+    benchmark: "NIFTY 50",
+    themeName: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const handleFormsubmit = (event) => {
+    //event.preventDefault();
+    setErrors(Validation(values));
+  };
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  //end of validation
 
   const savePortfolioHeader = () => {
     console.log("hello i am from saveportfolioheader");
     let headerObj = {
-      portfolioName: portfolioName,
-      baseCurrency: baseCurrency,
-      exchange: exchange,
-      benchmark: benchmark,
-      fundManagerName: fundManagerName,
-      initialInvestment: initialInvestment,
-      currentValue: currInvestment,
-      rebalancingFrequency: rebalancingFrequency,
-      status: status,
-      themeName: themes,
+      portfolioName: values.portfolioName,
+      baseCurrency: values.baseCurrency,
+      exchange: values.exchange,
+      benchmark: values.benchmark,
+      fundManagerName: values.fundManagerName,
+      initialInvestment: values.initialInvestment,
+      currentValue: values.initialInvestment,
+      rebalancingFrequency: values.rebalancingFrequency,
+      themeName: values.themeName,
     };
+    setErrors(Validation(values));
     console.log(headerObj);
     HeaderService.createPortfolio(headerObj)
       .then((response) => {
         setMessage("Portfolio Created Successfully");
         console.log(response.data);
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -99,56 +116,60 @@ const PortHeader = (props) => {
             </nav>
 
             <div className="contact">
-              <form>
+              <form name="simpleForm">
                 <p>
                   <p className="p1">Portfolio Name</p>
                   <input
-                    onChange={(e) => {
-                      setPortfolioName(e.target.value);
-                    }}
-                    value={portfolioName}
+                    onChange={handleChange}
+                    value={values.portfolioName}
                     type="text"
                     placeholder="Enter portfolio name"
-                    name="Portfolio name"
+                    name="portfolioName"
                   />
+                  {/* validation */}
+                  {errors.portfolioName && (
+                    <p className="error">{errors.portfolioName}</p>
+                  )}
+                  {/* validation end */}
                 </p>
                 <p>
                   <p className="p2"> Fund Manager</p>
                   <input
-                    onChange={(e) => {
-                      setFundManagerName(e.target.value);
-                    }}
-                    value={fundManagerName}
+                    onChange={handleChange}
+                    value={values.fundManagerName}
                     type="text"
                     placeholder="Enter Fund manager name"
-                    name="Fundmanager name"
+                    name="fundManagerName"
                   />
+                  {/* validation */}
+                  {errors.fundManagerName && <p className="error">{errors.fundManagerName}</p>}
+                  {/* validation end */}
                 </p>
                 <p>
                   <p className="p3"> Base Currency</p>
                   <input
-                    onChange={(e) => {
-                      setBaseCurrency(e.target.value);
-                    }}
-                    value={baseCurrency}
+                    onChange={handleChange}
+                    value={values.baseCurrency}
                     type="text"
                     placeholder="INR"
-                    name="Base Currency"
+                    name="baseCurrency"
                   />
+                  {errors.baseCurrency && <p className="error">{errors.baseCurrency}</p>}
                 </p>
                 <p>
                   <p className="p4">Initial Investment</p>
                   <input
-                    onChange={(e) => {
-                      setInitialInvestment(e.target.value);
-                    }}
-                    value={initialInvestment}
+                    onChange={handleChange}
+                    value={values.initialInvestment}
                     type="text"
                     placeholder="500 CRORES"
-                    name="Initial Investment"
+                    name="initialInvestment"
                   />
+                  {errors.initialInvestment && (
+                    <p className="error">{errors.initialInvestment}</p>
+                  )}
                 </p>
-                <p>
+                {/* <p>
                   <p className="p5">Current value of Investment</p>
                   <input
                     onChange={(e) => {
@@ -159,47 +180,48 @@ const PortHeader = (props) => {
                     placeholder="500 CRORES"
                     name="Current Investment"
                   />
-                </p>
+                </p> */}
                 <p>
                   <p className="p6">Exchange</p>
                   <input
-                    onChange={(e) => {
-                      setExchange(e.target.value);
-                    }}
-                    value={exchange}
+                    onChange={handleChange}
+                    value={values.exchange}
                     type="text"
                     placeholder="NSE"
-                    name="Exchange"
-                  />
+                    name="exchange"
+                  />{" "}
+                  {errors.exchange && <p>{errors.exchange}</p>}
                 </p>
                 <p>
                   <p className="p7">Rebalancing Frequency</p>
                   <select
                     className="Refreq"
-                    onChange={(e) => {
-                      setRebalancingFrequency(e.target.value);
-                    }}
+                    onChange={handleChange}
                     value={props.selected}
-                    name="Rebalancing Frequency"
+                    name="Refreq"
                   >
                     <option value="daily">DAILY</option>
+
                     <option value="monthly">MONTHLY</option>
+
                     <option value="yearly">YEARLY</option>
                   </select>
+                  {errors.rebalancingFrequency && (
+                    <p className="error">{errors.rebalancingFrequency}</p>
+                  )}
                 </p>
                 <p>
                   <p className="p8">Default Benchmark</p>
                   <input
-                    onChange={(e) => {
-                      setBenchmark(e.target.value);
-                    }}
-                    value={benchmark}
+                    onChange={handleChange}
+                    value={values.benchmark}
                     type="text"
                     placeholder="NIFTY 50"
-                    name="Benchmark"
+                    name="benchmark"
                   />
+                  {errors.benchmark && <p className="error">{errors.benchmark}</p>}
                 </p>
-                <p>
+                {/* <p>
                   <p className="p9">Status</p>
                   <input
                     onChange={(e) => {
@@ -208,27 +230,26 @@ const PortHeader = (props) => {
                     value={status}
                     type="text"
                     placeholder="Display"
-                    name="Status"
-                  />
+                    name="status"
                 </p>
+                  /> */}
                 <p>
                   <p className="Themes">Themes</p>
                   <div className="drop">
                     <select
                       name="Themes"
-                      onChange={(e) => {
-                        setThemes(e.target.value);
-                      }}
+                      onChange={handleChange}
                       value={props.selected}
                     >
                       <option value="Conservative">Conservative</option>
-                      
+
                       <option value="Aggressive">Aggressive</option>
                       <option value="Moderately Aggressive">
                         Moderately Aggressive
                       </option>
                       <option value="Very Aggressive">VeryAggressive</option>
                     </select>
+                    {errors.themeName && <p className="error">{errors.themeName}</p>}
                   </div>
                 </p>
                 {/* ()=>navigate('/portcomposition') */}
@@ -238,9 +259,10 @@ const PortHeader = (props) => {
                 className="btn btn-primary submit"
                 onClick={() => {
                   savePortfolioHeader();
+                  handleFormsubmit();
                 }}
               >
-                Save
+                SAVE
               </button>
               &nbsp;&nbsp;
               <button className="btn btn-info reset" type="reset">

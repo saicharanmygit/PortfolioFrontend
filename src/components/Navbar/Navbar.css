@@ -9,5 +9,9 @@
 }
 
 .nav-link {
-  margin-left: 4%;
+  margin-left: 10px;
+}
+.alloc{
+  margin-left: 180px;
+  margin-top: 10px;
 }

@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import HeaderService from "../../services/HeaderService";
 import { useLocation } from "react-router-dom";
 const Theme = () => {
-    const location = useLocation();
+  const location = useLocation();
   const { transferObject } = location.state;
   console.log(transferObject);
-  const [themeName,setThemeName]=useState("")
+  const [themeName, setThemeName] = useState("");
   console.log(transferObject.themeName);
   const [theme, setTheme] = useState({
     data: [],
@@ -25,11 +25,10 @@ const Theme = () => {
         console.log(error);
       });
   }, []);
-  
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="c1">
         <div className="c2">
           <h1>Theme</h1>
@@ -45,28 +44,25 @@ const Theme = () => {
             </tr>
           </thead>
 
-          
-
           <tbody>
             {/* trial */}
 
             {theme.loading
-            ?""
-            :theme.data.map((item,index)=>{
-                return(
+              ? ""
+              : theme.data.map((item, index) => {
+                  return (
                     <tr key={item.themeName}>
-                        <td>{item.themeName}</td>
-                        <td>{item.equity}</td>
-                        <td>{item.allocation}</td>
-                        <td>{item.risk}</td>
-                        <td>{item.investmentHorizon}</td>
+                      <td>{item.themeName}</td>
+                      <td>{item.equity}</td>
+                      <td>{item.allocation}</td>
+                      <td>{item.risk}</td>
+                      <td>{item.investmentHorizon}</td>
                     </tr>
-                )
-            })}
+                  );
+                })}
             {/* end */}
 
-
-          {/* <tr>
+            {/* <tr>
             <td rowSpan={3}>Aggressive</td>
             <td>Equities</td>
             <td>75%</td>
@@ -90,16 +86,8 @@ const Theme = () => {
 
 export default Theme;
 
-
-
-
-
-
-
-
-
-
-{/* {portfolios.loading
+{
+  /* {portfolios.loading
                   ? ""
                   : portfolios.data.map((item, index) => {
                       return (
@@ -118,4 +106,5 @@ export default Theme;
                           <td>{item.initialInvestment}</td>
                           <td>{item.currentValue}</td>
                           <td>{item.noOfSecurities}</td>
- */}
+ */
+}

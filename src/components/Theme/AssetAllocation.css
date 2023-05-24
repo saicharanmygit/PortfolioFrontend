@@ -1,69 +1,202 @@
-.form-container {
-     display: flex;
-     flex-direction: column; 
-     align-items: center; 
-     flex-wrap:wrap;
+ /* updated css */
+ .tname_theme{
+   margin-top: 9px;
  }
-    
-form {
-    display: grid;/* grid-template-columns: 1fr 1fr 1fr 1fr; */
-    justify-content: center;
-    gap: 1rem;
-    max-width: 600px;
-    margin-top: 1rem;
+ #tname{
+   margin-top: 1px;
+ }
+ option{
+   margin-top: 2%;
+ }
+
+
+
+label {
+  display: inline-block;
+  padding: 5px;
+  background-color: rgb(200, 232, 243);
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, color o.3s, transform 0.3s;
 }
-.form:hover{
-    box-shadow: blue;
+label:hover {
+  background-color: rgb(158, 217, 237);
+  color: #fff;
+  transform: scale(1.03);
 }
-.form-row {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+input {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.6);
 }
 label {
-    font-weight: lighter;
-    color: rgb(46, 51, 49);
+  font-weight: lighter;
+  color: rgb(46, 51, 49);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.assetForm {
+  display: grid;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin-top: 1rem;
+}
+.form:hover {
+  box-shadow: blue;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 input,
 textarea {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 2px solid #ccc;
 }
-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #66b8db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #66b8db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .formbutton {
-    text-align: center;
-    margin-right: -1%;
-    font-size: 20px ;
-    margin-top: 3%;
+  text-align: center;
+  margin-right: -1%;
+  font-size: 20px;
+  margin-top: 1%;
 }
-    
-button:hover {
-    background-color: #45a049;
-}
-.f{
-    border: 1px solid black;
-    margin: auto;
-    margin-top: 20px;
-    padding: 10px;
-    box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
-    border-radius: 2px;
 
+button:hover {
+  background-color: #45a049;
+} */
+
+.my-button {
+    margin-top: 1%;
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
     }
-.f:hover{
-    box-shadow: blue;
+    
+    .my-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    }
+    
+    .my-button:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.6);
+    }
+.assetForm {
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+  border-radius: 2px;
 }
-.f {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+.assetForm:hover {
+  box-shadow: blue;
+}
+.assetForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.invest {
+  margin-top: 0px;
+  width: 250px;
+  height: 45px;
+  /* border-radius: 10px black; */
+  border-radius: 4px;
+  border: 2px solid rgb(230, 201, 201);
+}
+
+.risk {
+  margin-top: -7%;
+  width: 250px;
+  height: 45px;
+  border-radius: 4px;
+  border: 2px solid rgb(230, 201, 201);
+}
+.risk_tab {
+  margin-top: -1px;
+}
+.invest_tab {
+  margin-top: 9px;
+}
+
+.form-container h2 {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 16px 0;
+  background-image: linear-gradient(to right, #6a73c9, #394ec2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-container .bordered-heading {
+  position: relative;
+  display: inline-block;
+  padding: 8px 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: 2px solid #555;
+  border-radius: 5px;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.bordered-heading:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -9px;
+  right: -9px;
+  bottom: -2px;
+  z-index: -1;
+  border: 1px solid #555;
+  border-radius: 7px;
 }

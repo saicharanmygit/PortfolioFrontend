@@ -7,7 +7,6 @@ import HeaderService from "../../services/HeaderService";
 import Validation from "./Validation";
 
 const PortHeader = (props) => {
-
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   //validation
@@ -15,17 +14,48 @@ const PortHeader = (props) => {
     portfolioName: "",
     fundManagerName: "",
     baseCurrency: "INR",
-    initialInvestment: "500 crore",
+    initialInvestment: "",
     exchange: "NSE",
     rebalancingFrequency: "",
-    benchmark: "NIFTY 50",
     themeName: "",
+    benchmark: "NIFTY 50",
+    status: "new",
   });
 
-  const [errors, setErrors] = useState({});
+  //seperate error messges
+  const [errors, setErrors] = useState("");
+  const [dropError, setDropError] = useState({
+    rebalancingFrequency: "",
+    themeName: "",
+  });
+  //end of seperate error messages
+
   const handleFormsubmit = (event) => {
-    //event.preventDefault();
+    // event.preventDefault();
+
     setErrors(Validation(values));
+    let newErrors = {};
+    if (values.frequency === "") {
+      newErrors.frequency = "Please select frequency";
+    }
+
+    if (values.theme === "") {
+      newErrors.theme = "Please select theme";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Perform any other actions or validations here
+    // ...
+
+    // Clear the selected options
+    setValues({
+      frequency: "",
+      theme: "",
+    });
   };
   const handleChange = (event) => {
     setValues({
@@ -33,6 +63,19 @@ const PortHeader = (props) => {
       [event.target.name]: event.target.value,
     });
   };
+  //drop down validation
+  const handleInputChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+    setErrors({
+      ...dropError,
+      [e.target.name]: "",
+    });
+  };
+
+  //drop down validation ends here
 
   //end of validation
 
@@ -48,6 +91,7 @@ const PortHeader = (props) => {
       currentValue: values.initialInvestment,
       rebalancingFrequency: values.rebalancingFrequency,
       themeName: values.themeName,
+      status: values.status,
     };
     setErrors(Validation(values));
     console.log(headerObj);
@@ -72,7 +116,7 @@ const PortHeader = (props) => {
               className="inter"
             >
               <ul class="navbar-nav">
-                <li class="nav-item " className="left">
+                <li class="nav-it " className="left">
                   <a class="nav-link " href="#">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +183,9 @@ const PortHeader = (props) => {
                     name="fundManagerName"
                   />
                   {/* validation */}
-                  {errors.fundManagerName && <p className="error">{errors.fundManagerName}</p>}
+                  {errors.fundManagerName && (
+                    <p className="error">{errors.fundManagerName}</p>
+                  )}
                   {/* validation end */}
                 </p>
                 <p>
@@ -151,15 +197,17 @@ const PortHeader = (props) => {
                     placeholder="INR"
                     name="baseCurrency"
                   />
-                  {errors.baseCurrency && <p className="error">{errors.baseCurrency}</p>}
+                  {errors.baseCurrency && (
+                    <p className="error">{errors.baseCurrency}</p>
+                  )}
                 </p>
                 <p>
                   <p className="p4">Initial Investment</p>
                   <input
                     onChange={handleChange}
                     value={values.initialInvestment}
-                    type="text"
-                    placeholder="500 CRORES"
+                    type="number"
+                    placeholder="Enter Amount"
                     name="initialInvestment"
                   />
                   {errors.initialInvestment && (
@@ -186,25 +234,26 @@ const PortHeader = (props) => {
                     type="text"
                     placeholder="NSE"
                     name="exchange"
-                  />{" "}
+                  />
                   {errors.exchange && <p>{errors.exchange}</p>}
                 </p>
                 <p>
                   <p className="p7">Rebalancing Frequency</p>
                   <select
                     className="Refreq"
-                    onChange={handleChange}
-                    value={props.selected}
+                    onChange={handleInputChange}
+                    value={values.rebalancingFrequency}
                     name="Refreq"
                   >
+                    <option value="">---select---</option>
                     <option value="daily">DAILY</option>
-
                     <option value="monthly">MONTHLY</option>
-
                     <option value="yearly">YEARLY</option>
                   </select>
                   {errors.rebalancingFrequency && (
-                    <p className="error">{errors.rebalancingFrequency}</p>
+                    <p style={{ color: "red" }}>
+                      {errors.rebalancingFrequency}
+                    </p>
                   )}
                 </p>
                 <p>
@@ -216,7 +265,9 @@ const PortHeader = (props) => {
                     placeholder="NIFTY 50"
                     name="benchmark"
                   />
-                  {errors.benchmark && <p className="error">{errors.benchmark}</p>}
+                  {errors.benchmark && (
+                    <p className="error">{errors.benchmark}</p>
+                  )}
                 </p>
                 {/* <p>
                   <p className="p9">Status</p>
@@ -235,18 +286,20 @@ const PortHeader = (props) => {
                   <div className="drop">
                     <select
                       name="Themes"
-                      onChange={handleChange}
-                      value={props.selected}
+                      onChange={handleInputChange}
+                      value={values.themeName}
                     >
+                      <option value="">---select---</option>
                       <option value="Conservative">Conservative</option>
-
                       <option value="Aggressive">Aggressive</option>
                       <option value="Moderately Aggressive">
                         Moderately Aggressive
                       </option>
                       <option value="Very Aggressive">VeryAggressive</option>
                     </select>
-                    {errors.themeName && <p className="error">{errors.themeName}</p>}
+                    {errors.themeName && (
+                      <p className="error">{errors.themeName}</p>
+                    )}
                   </div>
                 </p>
                 {/* ()=>navigate('/portcomposition') */}

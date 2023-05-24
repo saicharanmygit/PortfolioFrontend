@@ -26,9 +26,10 @@ const Navbar = () => {
           <h1>Portfolio Manager</h1>
         </a>
         <h4 className="alloc">
-          <a className="nav-link" href="/themeallocation">
-            Themes
-          </a>
+          <a className="nav-link-alloc" href="/themeallocation">Create theme
+          </a><br/>
+          <a className="nav-link-alloc" href="/viewtheme">View Theme</a>
+          
         </h4>
       </nav>
     </nav>

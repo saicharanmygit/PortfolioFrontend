@@ -8,6 +8,7 @@ import LandingPage from "./components/Portfolio/LandingPage";
 import PortHeader from "./components/Portfolio/PortHeader";
 import { route } from "browser-router";
 import AssetAllocation from "./components/Theme/AssetAllocation";
+import ViewTheme from "./components/Theme/ViewTheme";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/portcomposition" element={<PortComposition />}></Route>
         <Route path="/theme" element={<Theme/>}></Route>
         <Route path="/themeallocation" element={<AssetAllocation/>}></Route>
+        <Route path="/viewtheme" element={<ViewTheme/>}></Route>
         
       </Routes>
       <Outlet/>

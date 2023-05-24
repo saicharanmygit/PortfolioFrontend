@@ -1,0 +1,24 @@
+.table {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Adjust the number of columns as needed */
+    grid-gap: 10px; /* Adjust the gap between cells as needed */
+    }
+    
+    .header,
+    .row {
+    display: contents;
+    }
+    
+    .header > div,
+    .row > div {
+    padding: 5px;
+    border: 1px solid #ccc; /* Adjust the cell border as needed */
+    }
+    
+    .header > div {
+    font-weight: bold;
+    }
+    
+    .row > div:last-child {
+    text-align: center;
+    }

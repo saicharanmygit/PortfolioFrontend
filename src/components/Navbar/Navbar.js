@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
-import LandingPage from "../Portfolio/LandingPage";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const[isOpen,setIsOpen]= useState(false);
+
+  const toggleDropDown=()=>{
+    setIsOpen(!isOpen);
+  }
   const navigate = useNavigate();
   return (
     <nav className="color">
@@ -25,12 +29,23 @@ const Navbar = () => {
         <a class="nav-link" href="#">
           <h1>Portfolio Manager</h1>
         </a>
-        <h4 className="alloc">
+        {/* <h4 className="alloc">
           <a className="nav-link-alloc" href="/themeallocation">Create theme
           </a><br/>
           <a className="nav-link-alloc" href="/viewtheme">View Theme</a>
           
-        </h4>
+        </h4> */}
+        {/* <li>
+          <a onClick={toggleDropDown} className='dropOption_Admin'>Admin <span class="caret"></span></a>
+          {isOpen&&(
+            <ul className="dropOption_value">
+              <a href="/themeallocation">Create Theme</a><br></br>
+              <a href="/viewtheme">View Theme</a>
+            </ul>
+          )}
+        </li> */}
+        
+        
       </nav>
     </nav>
   );

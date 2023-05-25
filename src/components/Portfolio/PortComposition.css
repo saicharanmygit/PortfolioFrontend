@@ -8,6 +8,9 @@ table {
     margin-bottom: 10%;
     /* margin-top: 5%; */
 }
+.tableoutput{
+    margin-top: -10%;
+}
 
 
 .l1{
@@ -16,7 +19,7 @@ table {
     color: black;
     width: 20%;
     height: 30%;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-right: 60%;
 }
 .submit{
@@ -42,6 +45,9 @@ td{
 tr:nth-child(even) {
     background-color: #dddddd;
     padding: 8px;
+}
+.box .c2 .l1{
+    margin-top: -10%;
 }
 
 
